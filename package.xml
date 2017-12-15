@@ -13,6 +13,8 @@
   <depend>cv_bridge</depend>
   <depend>roscpp</depend>
   <depend>image_transport</depend>
+  <depend>tf</depend>
+  <depend>tf_conversions</depend>
 
   <export>
   </export>
