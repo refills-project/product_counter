@@ -1,0 +1,17 @@
+<launch>
+  <!-- Analysis engines to execute, comma separated list: eninge1,engine2,... -->
+  <arg name="depthTopic"       default="/camera/depth/image_raw"/> <!-- Short version for analysis_engines -->
+  <arg name="colorTopic"       default="/camera/color/image_raw"/> <!-- Short version for analysis_engines -->
+  <arg name="depthHints"       default="compressedDepth"/>
+  <arg name="colorHints"       default="compressed"/>
+  <arg name="camInfoTopic"     default="/camera/color/camera_info"/>
+  
+  <!-- launch robosherlock with the pipeline defined in demo.xml-->
+  <node name="count_objects_node" pkg="product_counter"  type="counter_node" output="screen">
+    <param name="depthTopic"    type="str"  value="$(arg depthTopic)"/>
+    <param name="colorTopic"    type="str"  value="$(arg colorTopic)"/>
+    <param name="camInfoTopic"  type="str"  value="$(arg camInfoTopic)"/>
+    <param name="depthHints"    type="str"  value="$(arg depthHints)"/>
+    <param name="colorHints"    type="str"  value="$(arg colorHints)"/>
+  </node>
+</launch>

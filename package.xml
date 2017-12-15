@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>refills_counting</name>
+  <name>product_counter</name>
   <version>0.0.1</version>
-  <description>The refills_counting package</description>
+  <description>The refills product counting package</description>
 
   <maintainer email="balintbe@cs.uni-bremen.de">Ferenc Balint-Benczedi</maintainer>
 

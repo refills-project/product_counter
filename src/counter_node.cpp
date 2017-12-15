@@ -1,12 +1,12 @@
 #include "ros/ros.h"
 #include "refills_msgs/CountObjects.h"
-#include "refills_counting/ROSKinectBridge.h"
+#include "refills_counting/RealSenseBridge.h"
 
 
 class CounterInterface
 {
   ros::NodeHandle nh_;
-  ROSKinectBridge cameraBridge_;
+  RealSenseBridge cameraBridge_;
   ros::ServiceServer service;
 
 public:
@@ -28,8 +28,7 @@ public:
     sensor_msgs::CameraInfo cam_info;
     cameraBridge_.getData(rgb, depth, cam_info);
     ROS_INFO("Got Image: width [%d] height[%d]",rgb.rows,rgb.cols);
-    cv::imwrite("/home/ferenc/rgb.png",rgb);
-    cv::imwrite("/home/ferenc/depth.png",depth);
+    //call algorithm etc.
     ROS_INFO("sending back response: [%ld]", (long int)res.object_count);
     return true;
   }
@@ -40,6 +39,7 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "count_objects_node");
   ros::NodeHandle nh("~");
+
   CounterInterface ci(nh);
 
   ros::spin();

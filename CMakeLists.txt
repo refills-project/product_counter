@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(refills_counting)
+project(product_counter)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -25,7 +25,7 @@ catkin_package(
 #hack for qt creator
 file(GLOB_RECURSE FILTERING_HEADERS *.h)
 
-add_executable(counter_node src/counter_node.cpp src/ROSKinectBridge.cpp ${FILTERING_HEADERS})
+add_executable(counter_node src/counter_node.cpp src/RealSenseBridge.cpp ${FILTERING_HEADERS})
 add_dependencies(counter_node refills_msgs_generate_messages_cpp)
 target_link_libraries(counter_node ${catkin_LIBRARIES})
 
