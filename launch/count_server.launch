@@ -1,10 +1,10 @@
 <launch>
   <!-- Analysis engines to execute, comma separated list: eninge1,engine2,... -->
-  <arg name="depthTopic"       default="/camera/depth/image_raw"/> <!-- Short version for analysis_engines -->
-  <arg name="colorTopic"       default="/camera/color/image_raw"/> <!-- Short version for analysis_engines -->
-  <arg name="depthHints"       default="compressedDepth"/>
+  <arg name="depthTopic"       default="/rs_camera/depth/image_raw"/> <!-- Short version for analysis_engines -->
+  <arg name="colorTopic"       default="/rs_camera/color/image_raw"/> <!-- Short version for analysis_engines -->
+  <arg name="depthHints"       default="raw"/>
   <arg name="colorHints"       default="compressed"/>
-  <arg name="camInfoTopic"     default="/camera/color/camera_info"/>
+  <arg name="camInfoTopic"     default="/rs_camera/color/camera_info"/>
   
   <!-- launch robosherlock with the pipeline defined in demo.xml-->
   <node name="count_objects_node" pkg="product_counter"  type="counter_node" output="screen">

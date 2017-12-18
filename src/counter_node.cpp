@@ -30,9 +30,12 @@ public:
     {
       usleep(100);
     }
+    ROS_INFO("Got data");
+ 
     cv::Mat rgb, depth;
     sensor_msgs::CameraInfo cam_info;
     cameraBridge_.getData(rgb, depth, cam_info);
+    ROS_INFO("Image size received: [%d * %d] ",rgb.cols,rgb.rows);	
     if(first)
     {
       //set camera params in productCounter
@@ -68,7 +71,6 @@ int main(int argc, char **argv)
   ros::NodeHandle nh("~");
 
   CounterInterface ci(nh);
-
   ros::spin();
   return 0;
 }
