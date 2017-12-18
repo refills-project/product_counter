@@ -44,6 +44,8 @@ public:
     {
       //set camera params in productCounter
       first = false;
+      //productCounter.setIntrinsics(double fx, double fy, double px, double py, uint32_t width, uint32_t height)
+      productCounter.setIntrinsics(cam_info.K[0], cam_info.K[4], cam_info.K[2], cam_info.K[5], cam_info.width, cam_info.height);
     }
 
     geometry_msgs::PoseStamped poseMsgInCameraFrame;
