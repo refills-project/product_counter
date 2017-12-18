@@ -50,7 +50,7 @@ public:
 
 
     tf::StampedTransform mapToCam,camToSeparator;
-    _tfListener.lookupTransform("rs_camera_depth_optical_frame","map_rotated",ros::Time::now(),mapToCam);
+    _tfListener.lookupTransform("rs_camera_depth_optical_frame","map_rotated",ros::Time(0),mapToCam);
 
     if(req.separator_location.header.frame_id != "map_rotated")
     {
