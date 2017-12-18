@@ -6,7 +6,7 @@
 
 #include "refills_msgs/CountObjects.h"
 #include "refills_counting/RealSenseBridge.h"
-#include "volume_counter/counter.h"
+#include "counter.h"
 
 class CounterInterface
 {

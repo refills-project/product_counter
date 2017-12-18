@@ -12,12 +12,14 @@ find_package(OpenCV REQUIRED)
 
 include_directories(
  include
+ src/refills_volume_estimator
  ${OpenCV_INCLUDE_DIRS}
  ${catkin_INCLUDE_DIRS}
 )
 
 catkin_package(
-  INCLUDE_DIRS include
+  INCLUDE_DIRS include src/refills_volume_estimator
+  
 #  LIBRARIES refills_counting
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
@@ -27,9 +29,13 @@ catkin_package(
 #hack for qt creator
 file(GLOB_RECURSE FILTERING_HEADERS *.h)
 
-add_subdirectory(src/volume_counter)
+add_library(volume_counter src/refills_volume_estimator/counter.cpp
+			   src/refills_volume_estimator/counterUtils.cpp)
+target_link_libraries(volume_counter ${OpenCV_LIBRARIES})
 
-add_executable(counter_node src/counter_node.cpp src/RealSenseBridge.cpp ${FILTERING_HEADERS})
+add_executable(counter_node 
+		src/counter_node.cpp 
+		src/RealSenseBridge.cpp ${FILTERING_HEADERS})
 add_dependencies(counter_node refills_msgs_generate_messages_cpp)
 target_link_libraries(counter_node volume_counter ${catkin_LIBRARIES})
 
