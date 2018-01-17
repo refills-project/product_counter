@@ -44,6 +44,8 @@ public:
     {
       //set camera params in productCounter
       first = false;
+      //productCounter.setIntrinsics(double fx, double fy, double px, double py, uint32_t width, uint32_t height)
+      productCounter.setIntrinsics(cam_info.K[0], cam_info.K[4], cam_info.K[2], cam_info.K[5], cam_info.width, cam_info.height);
     }
 
     geometry_msgs::PoseStamped poseMsgInCameraFrame;
@@ -74,6 +76,7 @@ public:
 
     tf::Matrix3x3 rotMat = mapToCam.getBasis();
     cv::Mat cvRot(3, 3, CV_64F);
+
     cvRot.at<double>(0, 0) = rotMat[0][0];
     cvRot.at<double>(0, 1) = rotMat[0][1];
     cvRot.at<double>(0, 2) = rotMat[0][2];
@@ -88,12 +91,12 @@ public:
     productCounter.setImg(depth);
 
     cv::Point3d separatorPosition;
-    separatorPosition.x = poseStamped.getOrigin().x();
-    separatorPosition.y = poseStamped.getOrigin().y();
-    separatorPosition.z = poseStamped.getOrigin().z();
+    separatorPosition.x = poseStamped.getOrigin().x()*1000;
+    separatorPosition.y = poseStamped.getOrigin().y()*1000;
+    separatorPosition.z = poseStamped.getOrigin().z()*1000;
 
     productCounter.setSeparator(separatorPosition);
-    productCounter.setType(req.obj_width, req.obj_height, req.obj_depth, req.object_name);
+    productCounter.setType(req.obj_width, -req.obj_height, req.obj_depth, req.object_name);
 
     res.object_count = productCounter.countObjects();
     ROS_INFO("sending back response: [%ld]", (long int)res.object_count);

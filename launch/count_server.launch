@@ -14,4 +14,9 @@
     <param name="depthHints"    type="str"  value="$(arg depthHints)"/>
     <param name="colorHints"    type="str"  value="$(arg colorHints)"/>
   </node>
+ 
+  <node name="rotate_map_hack" pkg ="tf" type="static_transform_publisher"
+	args = "0 0 0 0 3.14 1.57 /map /map_rotated 100"/> 
+
+
 </launch>
