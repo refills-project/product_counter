@@ -1,16 +1,16 @@
 <launch>
-  <!-- Analysis engines to execute, comma separated list: eninge1,engine2,... -->
-  <arg name="depthTopic"       default="/rs_camera/depth/image_raw"/> <!-- Short version for analysis_engines -->
-  <arg name="colorTopic"       default="/rs_camera/color/image_raw"/> <!-- Short version for analysis_engines -->
+  <arg name="cameraPrefix"     default="camera"/>
+  <arg name="depthTopic"       default="depth/image_raw"/>
+  <arg name="colorTopic"       default="color/image_raw"/> 
   <arg name="depthHints"       default="raw"/>
   <arg name="colorHints"       default="compressed"/>
-  <arg name="camInfoTopic"     default="/rs_camera/color/camera_info"/>
+  <arg name="camInfoTopic"     default="depth/camera_info"/>
   
   <!-- launch robosherlock with the pipeline defined in demo.xml-->
   <node name="count_objects_node" pkg="product_counter"  type="counter_node" output="screen">
-    <param name="depthTopic"    type="str"  value="$(arg depthTopic)"/>
-    <param name="colorTopic"    type="str"  value="$(arg colorTopic)"/>
-    <param name="camInfoTopic"  type="str"  value="$(arg camInfoTopic)"/>
+    <param name="depthTopic"    type="str"  value="/$(arg cameraPrefix)/$(arg depthTopic)"/>
+    <param name="colorTopic"    type="str"  value="/$(arg cameraPrefix)/$(arg colorTopic)"/>
+    <param name="camInfoTopic"  type="str"  value="/$(arg cameraPrefix)/$(arg camInfoTopic)"/>
     <param name="depthHints"    type="str"  value="$(arg depthHints)"/>
     <param name="colorHints"    type="str"  value="$(arg colorHints)"/>
   </node>
